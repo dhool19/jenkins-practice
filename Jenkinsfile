@@ -1,20 +1,16 @@
 pipeline {
-    agent {
-        dockerContainer {
-            image 'python:3.12'
-        }
-    }
+    agent any
 
     stages {
         stage('Install') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'python3 -m pip install -r requirements.txt --break-system-packages'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'pytest'
+                sh 'python3 -m pytest'
             }
         }
     }
